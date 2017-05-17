@@ -1,0 +1,110 @@
+<?php
+$destination = isset($this->requestParams['query']['destino']) ? ('?destino=' . urlencode($this->requestParams['query']['destino'])) : '';
+
+$form = $this->form;
+
+$form->setAttribute('action', $this->url('application', ['action' => 'login']) . $destination);
+$form->prepare();
+?>
+
+<header id="header">
+    <nav class="navbar d-block">
+        <span class="navbar-brand d-block text-center">Contatos</span>
+    </nav>
+</header>
+
+<br/>
+<br/>
+
+<div class="page-header">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-12">
+                <h1 class="text-center text-uppercase">Acesse <strong>sua conta</strong></h1>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-12">
+
+
+            <div class="form-header spacer">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center">
+                            <span class="title">Ainda não tem conta?</span>
+                            <a href="<?= $this->basePath('/cadastro' . $destination) ?>" class="link">CADASTRE-SE.</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?= $this->form()->openTag($form) ?>
+
+            <div class="form-body spacer">
+
+                <?= $this->partial('helpers/01_flashmessenger.phtml', ['formName' => 'login']) ?>
+
+                <?php $element = $form->get('identity') ?>
+
+                <div class="form-group element_<?= $element->getName() ?>">
+
+                    <div class="input_<?= $element->getName() ?> <?= $element->getAttribute('type') ?>">
+                        <?= $this->formElement($element) ?>
+
+                    </div>
+                    <?= $this->formElementErrors($element, ['class' => 'validation-message']) ?>
+
+                </div>
+
+                <?php $element = $form->get('credential') ?>
+
+                <div class="form-group element_<?= $element->getName() ?>">
+
+                    <div class="input_<?= $element->getName() ?> <?= $element->getAttribute('type') ?>">
+                        <?= $this->formElement($element) ?>
+
+                    </div>
+                    <?= $this->formElementErrors($element, ['class' => 'validation-message']) ?>
+
+                </div>
+
+
+                <?php $element = $form->get('remember_me') ?>
+
+                <div class="form-group element_<?= $element->getName() ?> clearfix">
+
+                    <div class="input_<?= $element->getName() ?> <?= $element->getAttribute('type') ?> float-left">
+
+                        <label><?= $this->formElement($element) ?> <?= $element->getLabel() ?></label>
+
+                    </div>
+
+                    <!--a id="btn-password-recovery" class="float-right" href="#recuperar-senha" data-toggle="modal" data-target="#modal-password-recovery"><u>Esqueceu sua senha?</u></a-->
+
+                </div>
+
+            </div>
+            <div class="form-footer">
+                <div class="row">
+                    <div class="col-12">
+
+                        <?= $this->formElement($form->get('submit')) ?>
+
+                    </div>
+                </div>
+            </div>
+            <?= $this->form()->closeTag() ?>
+
+        </div>
+    </div>
+</div>
+
+<br/>
+<br/>

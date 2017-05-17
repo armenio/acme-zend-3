@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+
+    <?= $this->headTitle($this->headTitle)->setSeparator(' - ')->setAutoEscape(false) ?>
+
+    <?= $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1, shrink-to-fit=no')
+        ->appendHttpEquiv('x-ua-compatible', 'ie=edge')
+    ?>
+
+    <link rel="stylesheet" href="<?= $this->basePath('assets/vendor/bootstrap/dist/css/bootstrap.min.css') ?>">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="<?= $this->basePath('assets/vendor/jasny-bootstrap/dist/css/jasny-bootstrap.min.css') ?>">
+
+    <link rel="stylesheet" href="<?= $this->basePath('assets/local/dist/css/main.min.css') ?>">
+
+    <script src="<?= $this->basePath('assets/vendor/jquery/dist/jquery.min.js') ?>"></script>
+</head>
+<body>
+
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<?= $this->content ?>
+
+<script type="text/javascript">
+    var basePath = '<?= $this->basePath() ?>';
+</script>
+
+<script src="<?= $this->basePath('assets/vendor/tether/dist/js/tether.min.js') ?>"></script>
+<script src="<?= $this->basePath('assets/vendor/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
+<script src="<?= $this->basePath('assets/vendor/jquery.scrollTo/jquery.scrollTo.min.js') ?>"></script>
+<script src="<?= $this->basePath('assets/vendor/jquery.maskedinput/dist/jquery.maskedinput.min.js') ?>"></script>
+<script src="<?= $this->basePath('assets/vendor/jasny-bootstrap/dist/js/jasny-bootstrap.min.js') ?>"></script>
+
+<script src="<?= $this->basePath('assets/local/dist/js/main.min.js') ?>"></script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<?php $debugMode = true; ?>
+    <h1>Erro 404</h1>
+    <h2><?= $this->translate($this->message) ?></h2>
+
+<?php if (isset($this->reason) && $this->reason) { ?>
+
+    <hr/>
+    <h2>Motivo:</h2>
+    <p><?= $this->translate($this->reason) ?></p>
+<?php } ?>
+<?php if (true === isset($this->controller) && $this->controller) { ?>
+
+    <dl>
+        <dt>Controller:</dt>
+        <dd><?= $this->escapeHtml($this->controller) ?>
+            <?php
+            if (isset($this->controller_class)
+                && $this->controller_class
+                && $this->controller_class != $this->controller
+            ) {
+                echo '(' . sprintf('resolves to %s', $this->escapeHtml($this->controller_class)) . ')';
+            }
+            ?>
+        </dd>
+    </dl>
+<?php } ?>
+<?php if (isset($this->display_exceptions) && $this->display_exceptions) { ?>
+    <?php if (isset($this->exception) && ($this->exception instanceof Exception || $this->exception instanceof Error)) { ?>
+
+        <hr/>
+        <h2>Motivo:</h2>
+        <?php if (true === $debugMode) { ?>
+
+            <h3><?= get_class($this->exception) ?></h3>
+            <dl>
+                <dt>File:</dt>
+                <dd>
+                    <p><?= $this->exception->getFile() ?>:<?= $this->exception->getLine() ?></p>
+                </dd>
+                <dt>Message:</dt>
+                <dd>
+                    <p><?= $this->escapeHtml($this->exception->getMessage()) ?></p>
+                </dd>
+                <dt>Stack trace:</dt>
+                <dd>
+                    <p><?= $this->escapeHtml($this->exception->getTraceAsString()) ?></p>
+                </dd>
+            </dl>
+        <?php } else { ?>
+
+            <p><?= $this->escapeHtml($this->exception->getMessage()) ?></p>
+        <?php } ?>
+    <?php } ?>
+<?php } ?>

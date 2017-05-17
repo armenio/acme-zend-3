@@ -1,0 +1,97 @@
+<!-- Modal -->
+<div id="modal-contacts" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-uppercase">Cadastro de <strong>Contatos</strong></h3>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <?php
+            $form = $this->formContacts;
+
+            $form->setAttribute('action', $this->url('contacts', ['action' => 'cadastro']));
+            $form->prepare();
+            ?>
+
+            <div class="modal-body">
+
+                <?= $this->form()->openTag($form) ?>
+
+                <div class="form-body">
+
+                    <?php $element = $form->get('id') ?>
+
+                    <?= $this->formRow($element) ?>
+
+                    <?= $this->partial('helpers/01_flashmessenger.phtml', ['formName' => 'contacts']) ?>
+
+                    <?php $element = $form->get('name') ?>
+
+                    <div class="form-group element_<?= $element->getName() ?>">
+
+                        <div class="input_<?= $element->getName() ?> <?= $element->getAttribute('type') ?>">
+                            <?= $this->formElement($element) ?>
+
+                        </div>
+                        <?= $this->formElementErrors($element, ['class' => 'validation-message']) ?>
+
+                    </div>
+
+                    <?php $element = $form->get('phone') ?>
+
+                    <div class="form-group element_<?= $element->getName() ?>">
+
+                        <div class="input_<?= $element->getName() ?> <?= $element->getAttribute('type') ?>">
+                            <?= $this->formElement($element) ?>
+
+                        </div>
+                        <?= $this->formElementErrors($element, ['class' => 'validation-message']) ?>
+
+                    </div>
+
+                    <?php $element = $form->get('email') ?>
+
+                    <div class="form-group element_<?= $element->getName() ?>">
+
+                        <div class="input_<?= $element->getName() ?> <?= $element->getAttribute('type') ?>">
+                            <?= $this->formElement($element) ?>
+
+                        </div>
+                        <?= $this->formElementErrors($element, ['class' => 'validation-message']) ?>
+
+                    </div>
+
+                    <?php $element = $form->get('group_id') ?>
+
+                    <div class="form-group element_<?= $element->getName() ?>">
+
+                        <div class="input_<?= $element->getName() ?> <?= $element->getAttribute('type') ?>">
+                            <?= $this->formElement($element) ?>
+
+                        </div>
+                        <?= $this->formElementErrors($element, ['class' => 'validation-message']) ?>
+
+                    </div>
+
+                </div>
+                <div class="form-footer">
+                    <div class="row">
+                        <div class="col-12">
+
+                            <?= $this->formElement($form->get('submit')) ?>
+
+                            <button type="button" class="btn btn-secondary text-uppercase float-right" data-dismiss="modal">Cancelar</button>
+
+                        </div>
+                    </div>
+                </div>
+                <?= $this->form()->closeTag() ?>
+
+            </div>
+        </div>
+    </div>
+</div>

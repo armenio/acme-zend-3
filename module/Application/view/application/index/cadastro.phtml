@@ -1,0 +1,144 @@
+<?php
+$destination = isset($this->requestParams['query']['destino']) ? ('?destino=' . urlencode($this->requestParams['query']['destino'])) : '';
+
+$form = $this->form;
+
+$form->setAttribute('action', $this->url('application', ['action' => 'cadastro']) . $destination);
+$form->prepare();
+?>
+
+<header id="header">
+    <nav class="navbar d-block">
+        <span class="navbar-brand d-block text-center">Contatos</span>
+    </nav>
+</header>
+
+<br/>
+<br/>
+
+
+<div class="page-header">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-12">
+                <h1 class="text-center text-uppercase">
+                    <?php if ($this->identity()) { ?>
+                        Alterar <strong>meus dados</strong>
+                    <?php } else { ?>
+                        Faça <strong>seu cadastro</strong>
+                    <?php } ?>
+                </h1>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-12">
+
+            <div class="form-header spacer">
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="text-center">
+                            <?php if ($this->identity()) { ?>
+
+                                <span class="title">Seja bem vindo, <strong><?= $this->identity()->name ?></strong></span> -
+                                <a href="<?= $this->basePath('/login?logout=now') ?>" class="link">SAIR</a>
+                            <?php } else { ?>
+
+                                <span class="title">Já tem cadastro?</span>
+                                <a href="<?= $this->basePath('/login' . $destination) ?>" class="link">ACESSE SUA CONTA.</a>
+                            <?php } ?>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <?= $this->form()->openTag($form) ?>
+
+            <div class="form-body spacer">
+
+                <?php $element = $form->get('id') ?>
+
+                <?= $this->formRow($element) ?>
+
+                <?= $this->partial('helpers/01_flashmessenger.phtml', ['formName' => 'register']) ?>
+
+                <?php $element = $form->get('name') ?>
+
+                <div class="form-group element_<?= $element->getName() ?>">
+
+                    <?= $this->formLabel($element) ?>
+
+                    <div class="input_<?= $element->getName() ?> <?= $element->getAttribute('type') ?>">
+                        <?= $this->formElement($element) ?>
+
+                    </div>
+                    <?= $this->formElementErrors($element, ['class' => 'validation-message']) ?>
+
+                </div>
+
+                <?php $element = $form->get('identity') ?>
+
+                <div class="form-group element_<?= $element->getName() ?>">
+
+                    <?= $this->formLabel($element) ?>
+
+                    <div class="input_<?= $element->getName() ?> <?= $element->getAttribute('type') ?>">
+                        <?= $this->formElement($element) ?>
+
+                    </div>
+                    <?= $this->formElementErrors($element, ['class' => 'validation-message']) ?>
+
+                </div>
+
+                <?php $element = $form->get('credential') ?>
+
+                <div class="form-group element_<?= $element->getName() ?>">
+
+                    <?= $this->formLabel($element) ?>
+
+                    <div class="input_<?= $element->getName() ?> <?= $element->getAttribute('type') ?>">
+                        <?= $this->formElement($element) ?>
+
+                    </div>
+                    <?= $this->formElementErrors($element, ['class' => 'validation-message']) ?>
+
+                </div>
+
+                <?php $element = $form->get('credential_confirmation') ?>
+
+                <div class="form-group element_<?= $element->getName() ?>">
+
+                    <?= $this->formLabel($element) ?>
+
+                    <div class="input_<?= $element->getName() ?> <?= $element->getAttribute('type') ?>">
+                        <?= $this->formElement($element) ?>
+
+                    </div>
+                    <?= $this->formElementErrors($element, ['class' => 'validation-message']) ?>
+
+                </div>
+
+            </div>
+
+            <div class="form-footer">
+
+                <?= $this->formElement($form->get('submit')) ?>
+
+            </div>
+            <?= $this->form()->closeTag() ?>
+
+        </div>
+    </div>
+</div>
+
+<br/>
+<br/>

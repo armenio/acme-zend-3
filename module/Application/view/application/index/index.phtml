@@ -1,0 +1,89 @@
+<header id="header">
+    <nav class="navbar d-block">
+        <div class="clearfix">
+            <div class="brand d-block float-left">
+                <div class="clearfix">
+                    <button class="navbar-toggler d-block float-left hidden-lg-up" type="button" data-toggle="offcanvas" data-target=".navmenu" data-canvas="#app">
+                        <i class="material-icons">menu</i>
+                    </button>
+                    <span class="navbar-brand d-block float-left">Contatos</span>
+                </div>
+            </div>
+
+            <div class="w-50 d-block float-left hidden-md-down">
+                <form class="form-search" method="GET" action="<?= $this->url('application') ?>" enctype="application/x-www-form-urlencoded">
+                    <div class="form-body">
+                        <div class="form-group element_q">
+                            <div class="input_q text">
+                                <input type="text" required name="q" id="element_q" placeholder="<?= $this->escapeHtmlAttr('Busque um contato') ?>" class="form-control" value="<?= $this->escapeHtmlAttr(!empty($this->requestParams['query']['q']) ? $this->requestParams['query']['q'] : '') ?>" autocomplete="off">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit"><i class="material-icons">search</i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </nav>
+</header>
+
+<div id="app">
+    <aside class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
+        <ul class="nav flex-column hidden-lg-up">
+            <li class="nav-item">
+                <form class="form-search" method="GET" action="<?= $this->url('application') ?>" enctype="application/x-www-form-urlencoded">
+                    <div class="form-body">
+                        <div class="form-group element_q">
+                            <div class="input_q text">
+                                <input type="text" required name="q" id="element_q" placeholder="<?= $this->escapeHtmlAttr('Busque um contato') ?>" class="form-control" value="<?= $this->escapeHtmlAttr(!empty($this->requestParams['query']['q']) ? $this->requestParams['query']['q'] : '') ?>" autocomplete="off">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit"><i class="material-icons">search</i></button>
+                    </div>
+                </form>
+            </li>
+        </ul>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="groups-filter nav-link animated active" href="#todos" data-id="0"><i class="material-icons">contacts</i> Todos os contatos</a>
+
+                <ul id="groups-list" class="nav sub-nav flex-column">
+
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="groups-add nav-link animated" href="#adicionar-grupo" data-toggle="modal" data-target="#modal-groups"><i class="material-icons">group_add</i> Criar um grupo</a>
+            </li>
+            <li class="nav-item">
+                <a class="contacts-add nav-link animated" href="#adicioinar-contato" data-toggle="modal" data-target="#modal-contacts"><i class="material-icons">person_add</i> Criar um contato</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link animated" href="<?= $this->url('application', ['action' => 'cadastro'], ['query' => ['destino' => '/']]) ?>"><i class="material-icons">settings</i> Meus dados</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link animated" href="<?= $this->url('application', ['action' => 'login'], ['query' => ['logout' => 'true']]) ?>"><i class="material-icons">exit_to_app</i> Sair</a>
+            </li>
+        </ul>
+    </aside>
+
+    <main>
+        <form id="form-contacts-list">
+            <table id="contacts-list" class="table table-md table-hover">
+                <tbody></tbody>
+            </table>
+        </form>
+
+        <button id="contacts-remove-all" class="btn btn-primary"><i class="material-icons">close</i> Remover selecionados</button>
+    </main>
+</div>
+
+<?= $this->partial('helpers/02_modal_contacts.phtml') ?>
+<?= $this->partial('helpers/02_modal_groups.phtml') ?>
+<?= $this->partial('helpers/02_modal_contact.phtml') ?>
+
+<script type="text/javascript">
+    var jsonContacts = <?= $this->json($this->contacts) ?>;
+    var jsonGroups = <?= $this->json($this->groups) ?>;
+</script>

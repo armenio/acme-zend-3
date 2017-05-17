@@ -1,0 +1,31 @@
+<?php $debugMode = true; ?>
+<h1>Erro de execução</h1>
+<h2><?= $this->translate($this->message) ?></h2>
+<?php if (isset($this->display_exceptions) && $this->display_exceptions) { ?>
+    <?php if (isset($this->exception) && ($this->exception instanceof Exception || $this->exception instanceof Error)) { ?>
+
+        <hr/>
+        <h2>Motivo:</h2>
+        <?php if (true === $debugMode) { ?>
+
+            <h3><?= get_class($this->exception) ?></h3>
+            <dl>
+                <dt>File:</dt>
+                <dd>
+                    <pre><?= $this->exception->getFile() ?>:<?= $this->exception->getLine() ?></pre>
+                </dd>
+                <dt>Message:</dt>
+                <dd>
+                    <pre><?= $this->escapeHtml($this->exception->getMessage()) ?></pre>
+                </dd>
+                <dt>Stack trace:</dt>
+                <dd>
+                    <pre><?= $this->escapeHtml($this->exception->getTraceAsString()) ?></pre>
+                </dd>
+            </dl>
+        <?php } else { ?>
+
+            <p><?= $this->escapeHtml($this->exception->getMessage()) ?></p>
+        <?php } ?>
+    <?php } ?>
+<?php } ?>
