@@ -13,17 +13,17 @@ Api para gestão de produtos da empresa Acme
 
 ## Instalação do projeto
 
-```bash
-$ git clone https://github.com/armenio/acme-zend-3.git aplicacao
-$ cd aplicacao
-$ composer install
-```
+
+    $ git clone https://github.com/armenio/acme-zend-3.git aplicacao
+    $ cd aplicacao
+    $ composer install
+
 
 - Não conhece o composer? [Veja aqui](http://getcomposer.org/doc/00-intro.md#introduction) como usá-lo
-    - * é possível usar o composer sem instalação com o comando:
-     ```bash
-     $ /caminho/do/php /caminho/do/composer.phar install
-     ```
+     * é possível usar o composer sem instalação com o comando:
+    ```bash
+    $ /caminho/do/php /caminho/do/composer.phar install
+    ```
 
 ### O arquivo para criação do banco de dados encontra-se em:
 /caminho/da/aplicacao/data/db.sql
@@ -32,7 +32,5 @@ $ composer install
 /caminho/da/aplicacao/module/Application/config/module.config.php - linha 86
 
 ## Rodando a aplicação
-     ```bash
      $ cd /caminho/da/aplicacao
      $ php -S 127.0.0.1:8000 -t public/ public/index.php
-     ```
