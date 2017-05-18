@@ -1,7 +1,7 @@
 #Project
 
-/00.htaccess
-public/00.htaccess
+/0*
+/public/0*
 
 /data/cache/*
 !/data/cache/.gitkeep
